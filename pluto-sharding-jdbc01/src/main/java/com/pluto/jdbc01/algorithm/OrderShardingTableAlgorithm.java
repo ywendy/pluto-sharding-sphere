@@ -28,8 +28,8 @@ public class OrderShardingTableAlgorithm implements ComplexKeysShardingAlgorithm
                 ListShardingValue value = (ListShardingValue) shardingValue;
                 Collection<Long> values = value.getValues();
                 for (Long val : values) {
+                    String suffix = String.valueOf(val % 4L);
                     for (String tableName : availableTargetNames) {
-                        String suffix = val % 4L  + "";
                         if (tableName.endsWith(suffix + "")) {
                             result.add(tableName);
                             return result;
